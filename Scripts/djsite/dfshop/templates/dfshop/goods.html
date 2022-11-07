@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +19,7 @@
         <thead>
             <tr>
                 <td>Category</td>
+                <td>Image</td>
                 <td>Material</td>
                 <td>Name</td>
                 <td>Price</td>
@@ -26,6 +28,13 @@
             {% for good in goods_list %}
             <tr>                
                 <td>{{ good.category }}</td>
+                <td>
+                    {% if good.imagelink %}
+                    <img src="{% static good.imagelink %}" width="20" height="20">
+                    {% else %} 
+                    <img src="{% static 'no-image-icon.png' %}" width="20" height="20">
+                    {% endif %}
+                </td>
                 <td>{{ good.material }}</td>
                 <td>{{ good.name }}</td>
                 <td>{{ good.price }}</td>
