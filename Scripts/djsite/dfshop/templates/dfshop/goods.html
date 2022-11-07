@@ -12,28 +12,34 @@
         <p>Goods for Determination and Industry</p>
     </header>
     <h3>Fortress Trade Depot</h3>
+    {% if goods_list %}
     <p><b>Welcome sir or madam. Do you wish to purchase something?</b></p>
     <table>
         <thead>
-            {% if goods_list %}
-                <tr>
-                    <td>Category</td>
-                    <td>Material</td>
-                    <td>Name</td>
-                    <td>Price</td>
-                </tr>
-                {% for good in goods_list %}
-                <tr>                
-                    <td>{{ good.category }}</td>
-                    <td>{{ good.material }}</td>
-                    <td>{{ good.name }}</td>
-                    <td>{{ good.price }}</td>
-                </tr>
+            <tr>
+                <td>Category</td>
+                <td>Material</td>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Quantity</td>
+            </tr>
+            {% for good in goods_list %}
+            <tr>                
+                <td>{{ good.category }}</td>
+                <td>{{ good.material }}</td>
+                <td>{{ good.name }}</td>
+                <td>{{ good.price }}</td>
+                {% for st in stock %}
+                    {% if st.id == good.id %}
+                    <td>{{ st.quantityInStock }}</td>
+                    {% endif %}
                 {% endfor %}
-            {% else %}
-            <p>No goods on trade depot. All dwarwes have gone to the deep</p>
-            {% endif %}
+            </tr>
+            {% endfor %}
         </thead>
+        {% else %}
+        <p>No goods on trade depot. All dwarves have gone to the deep.</p>
+        {% endif %}
     </table>
 </body>
 </html>
