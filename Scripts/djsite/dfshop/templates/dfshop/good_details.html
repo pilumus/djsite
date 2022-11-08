@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Depot  {{ good }}</title>
+</head>
+<body>
+    <header>
+        <h1>Umriliteb Fortress</h1>
+        <p>Goods for Determination and Industry</p>
+    </header>
+    <h3>Fortress Trade Depot</h3>
+    <p><b>You're looking at {{ good }}</b></p>
+    <table>
+            <tr>
+                <td>{{ good }}</td>
+                <td>Rating:*****</td>
+                <td>Price:{{ good.price }}</td>
+            </tr>
+            <tr>
+                <td>
+                {% if good.imagelink %}
+                <img src="{% static good.imagelink %}" width="200" height="200">
+                {% else %} 
+                <img src="{% static 'no-image-icon.png' %}" width="200" height="200">
+                {% endif %}
+                </td>
+                <td>
+                    Left in stock: {{ stock.quantityInStock }}
+                </td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td>{{ good.category }}</td>
+            </tr>
+            <tr>
+                <td>Material:</td>
+                <td>{{ good.material }}</td>
+    </table>
+</body>
+</html>

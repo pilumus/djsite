@@ -10,6 +10,15 @@ def goods(request):
     return render(request, 'dfshop/goods.html', context)
 
 def good_details(request, good):
-    return HttpResponse("You're looking at %s." % good)
+    """
+    good - good string from goods template.
+    """
+    good_split_list = good.rsplit(' ')
+    good = Good.objects.get(material=good_split_list[0],
+                            name__startswith=good_split_list[1]) #It should get a particular ID
+    stock = Stock.objects.get(id=good.id)
+    context = {'good': good,
+                'stock': stock}
+    return render(request, 'dfshop/good_details.html', context)
 
 # Create your views here.
