@@ -36,7 +36,7 @@
                     {% endif %}
                 </td>
                 <td>{{ good.material }}</td>
-                <td>{{ good.name }}</td>
+                <td><a href="{% url 'good_details' good %}">{{ good.name }}</a></td>
                 <td>{{ good.price }}</td>
                 {% for st in stock %}
                     {% if st.id == good.id %}
