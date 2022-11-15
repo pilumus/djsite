@@ -1,6 +1,8 @@
 from .models import Good, Stock
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 def goods(request):
     goods_list = Good.objects.all() #QuerySet
@@ -20,5 +22,33 @@ def good_details(request, good):
     context = {'good': good,
                 'stock': stock}
     return render(request, 'dfshop/good_details.html', context)
+
+
+def indexView(request):
+    return render(request, 'index.html')
+@login_required()
+
+def dashboardView(request):
+    return render(request, "dashboard.html")
+
+def loginView(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login_url')
+
+
+def registerView(request):
+    # if request.method == 'POST':
+    #     form = UserCreationForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('login_url')
+    #
+    form = UserCreationForm()
+    return render(request,
+                  template_name='registration/register.html',
+                  context={"form": form})
 
 # Create your views here.

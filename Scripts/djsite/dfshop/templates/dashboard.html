@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <h3>Welcome, {{user.username}} </h3>
+    {% else %}
+    <h3>You are logged out</h3>
+    {% endif %}
+    <a href="{% url 'home' %}"></a>
+{% endblock %}

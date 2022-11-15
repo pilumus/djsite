@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umriliteb Fortress</title>
+</head>
+<body>
+    <header>
+        <h1>Umriliteb Fortress</h1>
+        <p>Goods for Determination and Industry</p>
+    </header>
+    <div class="container">
+    {% block content %}
+        {% if user.is_authenticated %}
+            <h3>Welcome, {{user.username}}</h3>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <h3>Simple Auth System</h3>
+            <a href="{% url 'login_url' %}">Login</a>
+            <a href="{% url 'register_url' %}">Register</a>
+        {% endif %}
+    {% endblock %}
+    </div>
+</body>
+</html>
