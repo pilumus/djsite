@@ -18,8 +18,8 @@
             <a href="{% url 'logout' %}">Logout</a>
         {% else %}
             <h3>Simple Auth System</h3>
-            <a href="{% url 'login_url' %}">Login</a>
-            <a href="{% url 'register_url' %}">Register</a>
+            <a href="{% url 'dfshop:login_url' %}">Login</a>
+            <a href="{% url 'dfshop:register_url' %}">Register</a>
         {% endif %}
     {% endblock %}
     </div>

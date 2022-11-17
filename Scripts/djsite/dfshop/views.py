@@ -1,6 +1,7 @@
 from .models import Good, Stock
 from django.shortcuts import render, redirect
 
+from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
@@ -40,12 +41,14 @@ def loginView(request):
 
 
 def registerView(request):
-    # if request.method == 'POST':
-    #     form = UserCreationForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('login_url')
-    #
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            login(request, user)
+            return redirect('dfshop:login_url')
+
     form = UserCreationForm()
     return render(request,
                   template_name='registration/register.html',
