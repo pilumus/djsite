@@ -1,3 +1,4 @@
+{% extends 'index.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +13,7 @@
         <h1>Umriliteb Fortress</h1>
         <p>Goods for Determination and Industry</p>
     </header>
+    {% block content %}
     <h3>Fortress Trade Depot</h3>
     {% if goods_list %}
     <p><b>Welcome sir or madam. Do you wish to purchase something?</b></p>
@@ -30,13 +32,13 @@
                 <td>{{ good.category }}</td>
                 <td>
                     {% if good.imagelink %}
-                    <img src="{% static good.imagelink %}" width="20" height="20">
+                    <img src="{% static good.imagelink %}" width="50" height="50">
                     {% else %} 
-                    <img src="{% static 'no-image-icon.png' %}" width="20" height="20">
+                    <img src="{% static 'no-image-icon.png' %}" width="50" height="50">
                     {% endif %}
                 </td>
                 <td>{{ good.material }}</td>
-                <td><a href="{% url 'good_details' good %}">{{ good.name }}</a></td>
+                <td><a href="{% url 'dfshop:good_details' good %}">{{ good.name }}</a></td>
                 <td>{{ good.price }}</td>
                 {% for st in stock %}
                     {% if st.id == good.id %}
@@ -50,5 +52,6 @@
         <p>No goods on trade depot. All dwarves have gone to the deep.</p>
         {% endif %}
     </table>
+    {% endblock %}
 </body>
 </html>

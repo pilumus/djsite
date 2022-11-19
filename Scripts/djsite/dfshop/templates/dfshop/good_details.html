@@ -1,3 +1,4 @@
+{% extends 'index.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +13,7 @@
         <h1>Umriliteb Fortress</h1>
         <p>Goods for Determination and Industry</p>
     </header>
+    {% block content %}
     <h3>Fortress Trade Depot</h3>
     <p><b>You're looking at {{ good }}</b></p>
     <table>
@@ -40,5 +42,6 @@
                 <td>Material:</td>
                 <td>{{ good.material }}</td>
     </table>
+    {% endblock %}
 </body>
 </html>
