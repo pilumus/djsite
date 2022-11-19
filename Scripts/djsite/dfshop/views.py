@@ -30,7 +30,11 @@ def indexView(request):
 @login_required()
 
 def dashboardView(request):
-    return render(request, "dashboard.html")
+    user = request.user
+    wallet = user.wallet_set.get(owner=user.id)
+    context = {'user':user,
+               'wallet':wallet}
+    return render(request, "dashboard.html", context)
 
 # def loginView(request):
 #     if request.method == 'POST':

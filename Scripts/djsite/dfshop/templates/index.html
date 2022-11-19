@@ -18,14 +18,14 @@
         <nav>
             <div class="nav-wrapper #424242 grey darken-3">
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><h5 class="brand-logo">Umriliteb Fortress</h5></li>
-                    <li><p class="brand-logo" style="font-size: 150%;">Goods for Determination and Industry</p></li>
+                    <h5 class="brand-logo">Umriliteb Fortress</h5>
+                    <p class="grey-text text-lighten-4" style="font-size: 155%;">Goods for Determination and Industry</p>
                 </ul>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{% url 'dfshop:home' %}">Home</a></li>
                     <li><a href="{% url 'dfshop:goods' %}">Goods</a></li>
                     {% if user.is_authenticated %}
-                    <li><h5>Welcome, {{user.username}}</h5></li>
+                    <li><a href="{% url 'dfshop:dashboard' %}">{{user.username}}</a></li>
                     <li><a href="{% url 'dfshop:logout' %}">Logout</a></li>
                     {% else %}
                     <li><a href="{% url 'dfshop:login_url' %}">Login</a></li>
@@ -47,8 +47,8 @@
         <div class="container">
           <div class="row">
             <div class="col l6 s12">
-              <h5 class="white-text">Footer Content</h5>
-              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              <h5 class="white-text">Umriliteb Fortress</h5>
+              <p class="grey-text text-lighten-4">Goods for Determination and Industry</p>
             </div>
             <div class="col l4 offset-l2 s12">
               <h5 class="white-text">Links</h5>
@@ -63,7 +63,7 @@
         </div>
         <div class="footer-copyright">
           <div class="container">
-          © 2014 Copyright Text
+          © 2022 Iron Forge Development
           <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
           </div>
         </div>

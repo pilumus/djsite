@@ -2,9 +2,12 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-    <h3>Welcome, {{user.username}} </h3>
+    <div class="container">
+    <h4>Welcome, {{user.username}} </h4>
+    <p style="font-size: 155%;">Your wallet: {{wallet.gold_quantity}} gold</p>
+    <button>Add gold</button>
     {% else %}
     <h3>You are logged out</h3>
     {% endif %}
-    <a href="{% url 'dfshop:home' %}">Home</a>
+    </div>
 {% endblock %}
