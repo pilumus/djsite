@@ -32,22 +32,31 @@ def indexView(request):
 def dashboardView(request):
     return render(request, "dashboard.html")
 
-def loginView(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login_url')
+# def loginView(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('login_url')
 
 
 def registerView(request):
+
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
+
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
             login(request, user)
-            return redirect('dfshop:login_url')
+            return redirect('dfshop:home')
+        else:
+            for msg in form.error_messages:
+                print(form.error_messages[msg])
+
+            return render(request,
+                          template_name='registration/register.html',
+                          context={"form": form})
 
     form = UserCreationForm()
     return render(request,
