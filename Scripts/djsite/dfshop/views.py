@@ -36,6 +36,11 @@ def dashboardView(request):
     except (KeyError, Wallet.DoesNotExist):
         wallet = user.wallet_set.create()
 
+    if request.method == 'POST':
+        add_gold = int(request.POST.get('number'))
+        wallet.gold_quantity += add_gold
+        wallet.save()
+
     context = {'user':user,
                'wallet':wallet}
     return render(request, "dashboard.html", context)
