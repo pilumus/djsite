@@ -1,4 +1,4 @@
-from .models import Good, Stock
+from .models import Good, Stock, Wallet
 from django.shortcuts import render, redirect
 
 from django.contrib.auth import logout, authenticate, login
@@ -31,7 +31,11 @@ def indexView(request):
 
 def dashboardView(request):
     user = request.user
-    wallet = user.wallet_set.get(owner=user.id)
+    try:
+        wallet = user.wallet_set.get(owner=user.id)
+    except (KeyError, Wallet.DoesNotExist):
+        wallet = user.wallet_set.create()
+
     context = {'user':user,
                'wallet':wallet}
     return render(request, "dashboard.html", context)
