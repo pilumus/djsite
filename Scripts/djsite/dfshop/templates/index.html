@@ -25,11 +25,13 @@
                     <li><a href="{% url 'dfshop:home' %}">Home</a></li>
                     <li><a href="{% url 'dfshop:goods' %}">Goods</a></li>
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'dfshop:dashboard' %}">{{user.username}}</a></li>
-                    <li><a href="{% url 'dfshop:logout' %}">Logout</a></li>
+                      <li><a href="{% url 'dfshop:dashboard' %}">{{user.username}}</a></li>
+                      <li><a href="{% url 'dfshop:cart' %}">Cart</a></li>
+                      <li><a href="{% url 'dfshop:logout' %}">Logout</a></li>
                     {% else %}
-                    <li><a href="{% url 'dfshop:login_url' %}">Login</a></li>
-                    <li><a href="{% url 'dfshop:register_url' %}">Register</a></li>
+                      <li><a href="{% url 'dfshop:login_url' %}">Login</a></li>
+                      <li><a href="{% url 'dfshop:cart' %}">Cart</a></li>
+                      <li><a href="{% url 'dfshop:register_url' %}">Register</a></li>
                     {% endif %}
                 </ul>
             </div>

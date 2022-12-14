@@ -9,7 +9,6 @@ urlpatterns = [
     path('goods/', views.goods, name='goods'),
     path('goods/<str:good>/good_details', views.good_details,
          name='good_details'),
-
     path('', views.indexView, name='home'),
     path('dashboard/', views.dashboardView, name='dashboard'),
     path('login/', LoginView.as_view(next_page='dfshop:dashboard'),
@@ -20,4 +19,5 @@ urlpatterns = [
 
     # path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
+    path('cart/', views.cartView, name='cart'),
 ]

@@ -25,7 +25,8 @@
                 <td>Material</td>
                 <td>Name</td>
                 <td>Price</td>
-                <td>Quantity</td>
+                <td>Quantity in stock</td>
+                <td>Add to cart</td>
             </tr>
             {% for good in goods_list %}
             <tr>                
@@ -45,6 +46,13 @@
                     <td>{{ st.quantityInStock }}</td>
                     {% endif %}
                 {% endfor %}
+                <td>
+                    <form method="post">
+                    {% csrf_token %}
+                    <input type="number" name="{{ good }}" min="0">
+                    <button>Add to Cart</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </thead>

@@ -76,4 +76,8 @@ def registerView(request):
                   template_name='registration/register.html',
                   context={"form": form})
 
+def cartView(request):
+
+    return render(request, "cart.html")
+
 # Create your views here.

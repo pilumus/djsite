@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if False %} 
+        <!-- goods list in user's cart -->
+        {% else %}
+            <h5>Your cart is empty yet. Feel free to <a href="{% url 'dfshop:goods' %}">fill</a> it</h5>
+        {% endif %}
+    {% else %}
+        <h5>You are logged out. Please <a href="{% url 'dfshop:login_url' %}">login</a> to see your cart.</h5>
+    {% endif %}
+{% endblock %}
