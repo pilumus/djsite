@@ -17,7 +17,21 @@ def goods(request):
                 owner's quantity reduce on Add to cart input
         """
         user = request.user
-        add_to_cart = request.POST.get(good)
+        for good in goods_list:
+            add_to_cart = request.POST.get(str(good.id))
+            # print(good.id, add_to_cart)
+            if add_to_cart != None:
+                add_to_cart = int(add_to_cart)
+                owners_good = Stock.objects.get(good=good.id, cart_owner='admin')
+                try:
+                    buyers_good = Stock.objects.get(good=good.id, cart_owner=user.username)
+                except (KeyError, Stock.DoesNotExist):
+                    buyers_good = Stock.objects.create(good=good, cart_owner=user.username)
+
+                owners_good.quantityInStock -= add_to_cart
+                buyers_good.quantityInStock += add_to_cart
+                owners_good.save()
+                buyers_good.save()
 
     context = {'goods_list': goods_list,
                'stock': stock}
