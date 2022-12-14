@@ -8,6 +8,17 @@ from django.contrib.auth.decorators import login_required
 def goods(request):
     goods_list = Good.objects.all() #QuerySet
     stock = Stock.objects.all()
+
+    if request.method == 'POST':
+        """ take Add to cart input of a good,
+            make a new Stock line: 
+                change cart_owner to logged username,
+                quantity_in_stock = Add to cart input
+                owner's quantity reduce on Add to cart input
+        """
+        user = request.user
+        add_to_cart = request.POST.get(good)
+
     context = {'goods_list': goods_list,
                'stock': stock}
     return render(request, 'dfshop/goods.html', context)
@@ -77,7 +88,11 @@ def registerView(request):
                   context={"form": form})
 
 def cartView(request):
+    user = request.user
+    stock = Stock.objects.filter(cart_owner=user.username)
 
-    return render(request, "cart.html")
+    context = {'user':user,
+               'stock':stock}
+    return render(request, "cart.html", context)
 
 # Create your views here.

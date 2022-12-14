@@ -1,9 +1,28 @@
 {% extends 'index.html' %}
 
 {% block content %}
+<h3>Your cart</h3>
     {% if user.is_authenticated %}
-        {% if False %} 
+        {% if stock %} 
         <!-- goods list in user's cart -->
+        <table>
+            <thead>
+                <td>Good</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Delete</td>
+            </thead>
+            <tbody>
+                {% for st in stock %}
+                <tr>                
+                    <td><a href="{% url 'dfshop:good_details' st.good %}">{{ st.good.name }}</a></td>
+                    <td>{{ st.good.price }}</td>
+                    <td>{{ st.quantityInStock }}</td>
+                    <td><button>Delete</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         {% else %}
             <h5>Your cart is empty yet. Feel free to <a href="{% url 'dfshop:goods' %}">fill</a> it</h5>
         {% endif %}

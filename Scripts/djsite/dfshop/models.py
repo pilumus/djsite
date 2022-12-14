@@ -14,7 +14,9 @@ class Good(models.Model):
 class Stock(models.Model):
     good = models.ForeignKey(Good, on_delete=models.CASCADE)
     quantityInStock = models.IntegerField(default=0)
+    owner = models.CharField(max_length=150, default='admin')
     container = models.CharField(max_length=20, default='box')
+    cart_owner = models.CharField(max_length=150, default='admin')
 
 class Wallet(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
